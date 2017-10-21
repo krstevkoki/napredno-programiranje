@@ -2,7 +2,7 @@ package mk.ukim.finki.lab1;
 
 import java.util.Arrays;
 
-class Bank {
+class Bank implements Parser {
     private String name;
     private Account[] accounts;
     private double totalTransferSum;
@@ -36,11 +36,9 @@ class Bank {
         if (indexFromId == -1 || indexToId == -1)
             return false;
 
-        double balanceFromId = Double.parseDouble(accounts[indexFromId].getBalance().
-                substring(0, accounts[indexFromId].getBalance().length() - 1));
-        double balanceToId = Double.parseDouble(accounts[indexToId].getBalance().
-                substring(0, accounts[indexToId].getBalance().length() - 1));
-        double transactionAmount = Double.parseDouble(t.getAmount().substring(0, t.getAmount().length() - 1));
+        double balanceFromId = Parser.parseStringToDouble(accounts[indexFromId].getBalance());
+        double balanceToId = Parser.parseStringToDouble(accounts[indexToId].getBalance());
+        double transactionAmount = Parser.parseStringToDouble(t.getAmount());
 
         // if there is not enough money on the account balance
         if (balanceFromId < transactionAmount)
@@ -66,7 +64,6 @@ class Bank {
     public String totalProvision() {
         return String.format("%.2f", totalProvisionSum) + "$";
     }
-
 
     public Account[] getAccounts() {
         return accounts;

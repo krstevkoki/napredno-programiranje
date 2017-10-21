@@ -1,6 +1,6 @@
 package mk.ukim.finki.lab1;
 
-class FlatAmountProvisionTransaction extends Transaction {
+class FlatAmountProvisionTransaction extends Transaction implements Parser {
     private String flatProvision;
 
     public FlatAmountProvisionTransaction(long fromId, long toId, String amount, String flatProvision) {
@@ -14,7 +14,7 @@ class FlatAmountProvisionTransaction extends Transaction {
 
     @Override
     public double getProvision() {
-        return Double.parseDouble(flatProvision.substring(0, flatProvision.length() - 1));
+        return Parser.parseStringToDouble(flatProvision);
     }
 
     @Override

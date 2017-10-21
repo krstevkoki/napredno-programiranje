@@ -1,6 +1,6 @@
 package mk.ukim.finki.lab1;
 
-class FlatPercentProvisionTransaction extends Transaction {
+class FlatPercentProvisionTransaction extends Transaction implements Parser {
     private int centsPerDollar;
 
     public FlatPercentProvisionTransaction(long fromId, long toId, String amount, int centsPerDollar) {
@@ -14,7 +14,7 @@ class FlatPercentProvisionTransaction extends Transaction {
 
     @Override
     public double getProvision() {
-        return (centsPerDollar / 100.0) * (int) Double.parseDouble(super.getAmount().substring(0, super.getAmount().length() - 1));
+        return (centsPerDollar / 100.0) * (int) Parser.parseStringToDouble(super.getAmount());
     }
 
     @Override

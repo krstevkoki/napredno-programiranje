@@ -1,4 +1,4 @@
-package mk.ukim.finki.lab3;
+package mk.ukim.finki.lab4;
 
 import java.util.Collections;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package mk.ukim.finki.lab3;
+package mk.ukim.finki.lab4;
 
 class ComplexNumber<T extends Number, U extends Number> implements Comparable {
     private T real;

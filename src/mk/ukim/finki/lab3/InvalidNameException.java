@@ -1,4 +1,13 @@
 package mk.ukim.finki.lab3;
 
-public class InvalidNameException {
+class InvalidNameException extends Exception {
+    public String name;
+
+    public InvalidNameException() {
+    }
+
+    public InvalidNameException(String name) {
+        super(name);
+        this.name = name;
+    }
 }

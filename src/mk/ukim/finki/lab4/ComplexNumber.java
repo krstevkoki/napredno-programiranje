@@ -1,6 +1,6 @@
 package mk.ukim.finki.lab4;
 
-class ComplexNumber<T extends Number, U extends Number> implements Comparable {
+class ComplexNumber<T extends Number, U extends Number> implements Comparable<ComplexNumber<?, ?>> {
     private T real;
     private U imag;
 
@@ -21,19 +21,9 @@ class ComplexNumber<T extends Number, U extends Number> implements Comparable {
         return Math.sqrt(Math.pow(real.doubleValue(), 2) + Math.pow(imag.doubleValue(), 2));
     }
 
-    public int compareTo(ComplexNumber<?, ?> o) {
-        return Double.compare(this.modul(), o.modul());
-    }
-
     @Override
-    public int compareTo(Object o) {
-        ComplexNumber<?, ?> cn = (ComplexNumber<?, ?>) o;
-        if (Double.compare(this.modul(), cn.modul()) == 0)
-            return 0;
-        else if (Double.compare(this.modul(), cn.modul()) == 1)
-            return 1;
-        else
-            return -1;
+    public int compareTo(ComplexNumber<?, ?> cn) {
+        return Double.compare(this.modul(), cn.modul());
     }
 
     @Override

@@ -36,6 +36,7 @@ cmake-build-debug/
 *.iws
 *.txt
 *.iml
+*.dat
 
 ## Plugin-specific files:
 

@@ -50,7 +50,7 @@ class Contact implements Serializable, Comparable {
 
 
     private static boolean isValidName(String name) throws InvalidNameException {
-        if (name.length() > 4 && name.length() <= 10 && name.matches("[a-zA-Z_0-9]+"))
+        if (name.length() > 4 && name.length() <= 10 && name.matches("\\w+"))
             return true;
         throw new InvalidNameException(name);
     }

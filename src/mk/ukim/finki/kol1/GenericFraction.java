@@ -28,16 +28,26 @@ class GenericFraction<T extends Number, U extends Number> {
         return numerator.doubleValue() / denominator.doubleValue();
     }
 
-    @Override
-    public String toString() {
+    private GenericFraction<Double, Double> simplify() throws ZeroDenominatorException {
         int GCD = GCD(this.numerator, this.denominator);
         if (this.numerator.intValue() == GCD && this.denominator.intValue() == GCD)
-            return String.format("%.2f / %.2f", this.numerator.doubleValue(), this.denominator.doubleValue());
+            return new GenericFraction<>(this.numerator.doubleValue(), this.denominator.doubleValue());
         else if (this.numerator.intValue() == GCD)
-            return String.format("%.2f / %.2f", this.numerator.doubleValue(), this.denominator.doubleValue() / GCD);
+            return new GenericFraction<>(this.numerator.doubleValue(), this.denominator.doubleValue() / GCD);
         else if (this.denominator.intValue() == GCD)
-            return String.format("%.2f / %.2f", this.numerator.doubleValue() / GCD, this.denominator.doubleValue());
+            return new GenericFraction<>(this.numerator.doubleValue() / GCD, this.denominator.doubleValue());
         else
-            return String.format("%.2f / %.2f", this.numerator.doubleValue() / GCD, this.denominator.doubleValue() / GCD);
+            return new GenericFraction<>(this.numerator.doubleValue() / GCD, this.denominator.doubleValue() / GCD);
+    }
+
+    @Override
+    public String toString() {
+        GenericFraction<Double, Double> simplified = null;
+        try {
+            simplified = simplify();
+            return String.format("%.2f / %.2f", simplified.numerator, simplified.denominator);
+        } catch (ZeroDenominatorException e) {
+            return e.getMessage();
+        }
     }
 }

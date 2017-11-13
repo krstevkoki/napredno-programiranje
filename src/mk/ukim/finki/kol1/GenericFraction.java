@@ -19,18 +19,9 @@ class GenericFraction<T extends Number, U extends Number> {
 
     public GenericFraction<Double, Double> add(GenericFraction<? extends Number, ? extends Number> gf) throws ZeroDenominatorException {
         int LCM = (this.denominator.intValue() * gf.denominator.intValue()) / GCD(this.denominator, gf.denominator);
-        if (this.denominator.intValue() == LCM && gf.denominator.intValue() == LCM)
-            return new GenericFraction<>(this.numerator.doubleValue() + gf.numerator.doubleValue(), this.denominator.doubleValue());
-        else if (this.denominator.intValue() == LCM)
-            return new GenericFraction<>(this.numerator.doubleValue() + gf.numerator.doubleValue() * (LCM / gf.denominator.intValue()),
-                    this.denominator.doubleValue());
-        else if (gf.denominator.intValue() == LCM)
-            return new GenericFraction<>(this.numerator.doubleValue() * (LCM / this.denominator.intValue()) +
-                    gf.numerator.doubleValue(), gf.denominator.doubleValue());
-        else
-            return new GenericFraction<>(this.numerator.doubleValue() * (LCM / this.denominator.intValue()) +
-                    gf.numerator.doubleValue() * (LCM / gf.denominator.intValue()), this.denominator.doubleValue() *
-                    (LCM / this.denominator.intValue()));
+        return new GenericFraction<>(this.numerator.doubleValue() * (LCM / this.denominator.intValue()) +
+                gf.numerator.doubleValue() * (LCM / gf.denominator.intValue()), this.denominator.doubleValue() *
+                (LCM / this.denominator.intValue()));
     }
 
     public double toDouble() {

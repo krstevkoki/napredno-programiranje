@@ -49,7 +49,6 @@ class F1Race {
             for (F1Driver driver : drivers) {
                 int minMilliseconds = Integer.MAX_VALUE;
                 int indexBestLap = -1;
-                ArrayList<String> bestLapPerDriver = new ArrayList<>();
                 for (int j = 0; j < driver.getLaps().size(); ++j) {
                     int milliseconds = parseMilliseconds(driver.getLaps().get(j));
                     if (minMilliseconds > milliseconds) {
@@ -57,8 +56,7 @@ class F1Race {
                         indexBestLap = j;
                     }
                 }
-                bestLapPerDriver.add(driver.getLaps().get(indexBestLap));
-                bestDrivers.add(new F1Driver(driver.getName(), bestLapPerDriver));
+                bestDrivers.add(new F1Driver(driver.getName(), driver.getLaps().get(indexBestLap)));
             }
             sortDrivers(bestDrivers);
             StringBuilder sb = new StringBuilder();

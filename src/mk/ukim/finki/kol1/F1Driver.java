@@ -11,6 +11,12 @@ class F1Driver {
         this.laps = laps;
     }
 
+    public F1Driver(String name, String lap) {
+        this.name = name;
+        this.laps = new ArrayList<>();
+        this.laps.add(lap);
+    }
+
     public String getName() {
         return name;
     }

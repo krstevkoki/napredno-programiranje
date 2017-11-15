@@ -11,5 +11,5 @@ interface Evaluator {
         INVALID // should throw exception
     }
 
-    boolean evaluate(Applicant applicant);
+    boolean evaluate(Applicant applicant) throws InvalidEvaluation;
 }

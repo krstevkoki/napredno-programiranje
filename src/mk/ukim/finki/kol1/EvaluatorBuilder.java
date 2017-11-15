@@ -5,63 +5,24 @@ class EvaluatorBuilder {
         // вашиот код овде
         switch (type) {
             case NO_CRIMINAL_RECORD:
-                return new NO_CRIMINAL_RECORD();
+                return applicant -> !(applicant.hasCriminalRecord());
             case MORE_EXPERIENCE:
-                return new MORE_EXPERIENCE();
+                return applicant -> applicant.getEmploymentYears() >= 10;
             case MORE_CREDIT_SCORE:
-                return new MORE_CREDIT_SCORE();
+                return applicant -> applicant.getCreditScore() >= 500;
             case NO_CRIMINAL_RECORD_AND_MORE_EXPERIENCE:
-                return new NO_CRIMINAL_RECORD_AND_MORE_EXPERIENCE();
+                return applicant -> build(Evaluator.TYPE.NO_CRIMINAL_RECORD).evaluate(applicant) &&
+                        build(Evaluator.TYPE.MORE_EXPERIENCE).evaluate(applicant);
             case NO_CRIMINAL_RECORD_AND_MORE_CREDIT_SCORE:
-                return new NO_CRIMINAL_RECORD_AND_MORE_CREDIT_SCORE();
+                return applicant -> build(Evaluator.TYPE.NO_CRIMINAL_RECORD).evaluate(applicant) &&
+                        build(Evaluator.TYPE.MORE_CREDIT_SCORE).evaluate(applicant);
             case MORE_EXPERIENCE_AND_MORE_CREDIT_SCORE:
-                return new MORE_EXPERIENCE_AND_MORE_CREDIT_SCORE();
+                return applicant -> build(Evaluator.TYPE.MORE_EXPERIENCE).evaluate(applicant) &&
+                        build(Evaluator.TYPE.MORE_CREDIT_SCORE).evaluate(applicant);
             case INVALID:
                 throw new InvalidEvaluation();
             default:
                 throw new InvalidEvaluation();
-        }
-    }
-
-    static class NO_CRIMINAL_RECORD implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return !(applicant.hasCriminalRecord());
-        }
-    }
-
-    static class MORE_EXPERIENCE implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return applicant.getEmploymentYears() >= 10;
-        }
-    }
-
-    static class MORE_CREDIT_SCORE implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return applicant.getCreditScore() >= 500;
-        }
-    }
-
-    static class NO_CRIMINAL_RECORD_AND_MORE_EXPERIENCE implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return new NO_CRIMINAL_RECORD().evaluate(applicant) && new MORE_EXPERIENCE().evaluate(applicant);
-        }
-    }
-
-    static class MORE_EXPERIENCE_AND_MORE_CREDIT_SCORE implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return new MORE_EXPERIENCE().evaluate(applicant) && new MORE_CREDIT_SCORE().evaluate(applicant);
-        }
-    }
-
-    static class NO_CRIMINAL_RECORD_AND_MORE_CREDIT_SCORE implements Evaluator {
-        @Override
-        public boolean evaluate(Applicant applicant) {
-            return new NO_CRIMINAL_RECORD().evaluate(applicant) && new MORE_CREDIT_SCORE().evaluate(applicant);
         }
     }
 }

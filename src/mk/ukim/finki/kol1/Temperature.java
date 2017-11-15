@@ -2,7 +2,7 @@ package mk.ukim.finki.kol1;
 
 import java.util.ArrayList;
 
-class Temperature implements Comparable {
+class Temperature implements Comparable<Temperature> {
     private int day;
     private char scale;
     private ArrayList<Double> temperatures;
@@ -30,8 +30,7 @@ class Temperature implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        Temperature temperature = (Temperature) o;
-        return Integer.compare(this.day, temperature.getDay());
+    public int compareTo(Temperature o) {
+        return Integer.compare(this.day, o.getDay());
     }
 }

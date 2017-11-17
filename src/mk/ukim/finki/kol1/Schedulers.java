@@ -3,7 +3,7 @@ package mk.ukim.finki.kol1;
 import java.util.*;
 
 class Schedulers {
-    public static <T> TaskScheduler<T> getOrdered() {
+    public static <T extends Task> TaskScheduler<T> getOrdered() {
         // vashiot kod ovde (annonimous class)
         return new TaskScheduler<T>() {
             @Override
@@ -20,7 +20,7 @@ class Schedulers {
         };
     }
 
-    public static <T> TaskScheduler<T> getFiltered(int order) {
+    public static <T extends Task> TaskScheduler<T> getFiltered(int order) {
         // vashiot kod ovde (lambda expression)
         return tasks -> {
             ArrayList<T> listFilteredTasks = new ArrayList<>();

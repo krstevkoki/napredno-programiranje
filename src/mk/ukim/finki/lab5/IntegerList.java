@@ -12,8 +12,7 @@ class IntegerList {
 
     public IntegerList(Integer[] a) {
         this.integerList = new LinkedList<>();
-        List<Integer> tmp = Arrays.asList(a);
-        integerList.addAll(tmp);
+        integerList.addAll(Arrays.asList(a));
     }
 
     public void add(int el, int idx) {

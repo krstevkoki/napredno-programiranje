@@ -94,7 +94,7 @@ class IntegerList {
         if (idx - k < 0)
             newIndex = size() - (Math.abs(idx - k) % size());
         else
-            newIndex = (idx - k) % size();
+            newIndex = idx - k;
         if (newIndex != idx) {
             int temp = get(idx);
             remove(idx);

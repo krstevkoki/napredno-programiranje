@@ -10,9 +10,9 @@ class IntegerList {
         this.integerList = new LinkedList<>();
     }
 
-    public IntegerList(Integer[] a) {
+    public IntegerList(Integer... numbers) {
         this.integerList = new LinkedList<>();
-        integerList.addAll(Arrays.asList(a));
+        integerList.addAll(Arrays.asList(numbers));
     }
 
     public void add(int el, int idx) {

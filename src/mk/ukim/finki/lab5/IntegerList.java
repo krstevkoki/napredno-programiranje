@@ -64,6 +64,7 @@ class IntegerList {
             else
                 hashtable.put(get(i), true);
         }
+        hashtable.clear();
     }
 
     public int sumFirst(int k) {

@@ -1,9 +1,6 @@
 package mk.ukim.finki.lab5;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 class SuperString {
     private LinkedList<String> superString;
@@ -29,33 +26,22 @@ class SuperString {
     }
 
     public void reverse() {
-        for (int i = 0; i < superString.size() - 1; ++i) {
-            if (i == 0)
-                superString.addFirst(superString.getLast());
-            else
-                superString.add(i, superString.getLast());
-            superString.removeLast();
-        }
-        reverseString(superString);
+        Collections.reverse(superString);
+        reverseStringInList(superString);
         LinkedList<String> temp = new LinkedList<>();
         while (!lastAdded.empty())
             temp.add(lastAdded.pop());
-        reverseString(temp);
+        reverseStringInList(temp);
         Iterator<String> iterator = temp.descendingIterator();
         while (iterator.hasNext())
             lastAdded.push(iterator.next());
     }
 
-    private static void reverseString(List<String> list) {
+    private static void reverseStringInList(List<String> list) {
         for (int i = 0; i < list.size(); ++i) {
-            int n = list.get(i).length();
-            Stack<Character> characterStack = new Stack<>();
-            char[] reversed = new char[n];
-            for (int j = 0; j < n; ++j)
-                characterStack.push(list.get(i).charAt(j));
-            for (int j = 0; !characterStack.empty(); ++j)
-                reversed[j] = characterStack.pop();
-            list.set(i, String.valueOf(reversed));
+            StringBuilder sb = new StringBuilder();
+            sb.append(list.get(i));
+            list.set(i, sb.reverse().toString());
         }
     }
 

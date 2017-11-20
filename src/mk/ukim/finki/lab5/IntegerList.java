@@ -24,7 +24,8 @@ class IntegerList {
             for (int i = integerList.size(); i < idx; ++i)
                 temp.add(0);
             temp.add(idx, el);
-            integerList = temp;
+            integerList.clear();
+            integerList.addAll(temp);
         }
     }
 

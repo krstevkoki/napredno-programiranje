@@ -58,11 +58,13 @@ class IntegerList {
 
     public void removeDuplicates() {
         Hashtable<Integer, Boolean> hashtable = new Hashtable<>();
-        for (int i = integerList.size() - 1; i >= 0; --i) {
-            if (hashtable.containsKey(get(i)))
-                remove(i);
+        ListIterator<Integer> listIterator = integerList.listIterator(integerList.size());
+        while (listIterator.hasPrevious()) {
+            Integer element = listIterator.previous();
+            if (hashtable.containsKey(element))
+                listIterator.remove();
             else
-                hashtable.put(get(i), true);
+                hashtable.put(element, true);
         }
         hashtable.clear();
     }

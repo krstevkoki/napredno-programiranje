@@ -1,5 +1,7 @@
 package mk.ukim.finki.aud7;
 
+import javax.naming.OperationNotSupportedException;
+
 public class SortedBinaryTree<T extends Comparable<T>> {
     private BinaryTreeNode<T> root;
     private int size;
@@ -56,15 +58,15 @@ public class SortedBinaryTree<T extends Comparable<T>> {
         }
     }
 
-    private static <T extends Comparable<T>> void showElementsInSubTree(BinaryTreeNode<T> subTreeRoot, String mode) {
+    private static <T extends Comparable<T>> void showElementsInSubTree(BinaryTreeNode<T> subTreeRoot, String mode)
+            throws OperationNotSupportedException {
         if (mode.trim().toLowerCase().equals("inorder"))
             inOrderTraversal(subTreeRoot);
         else if (mode.trim().toLowerCase().equals("preorder"))
             preOrderTraversal(subTreeRoot);
         else if (mode.trim().toLowerCase().equals("postorder"))
             postOrderTraversal(subTreeRoot);
-        else throw new NoSuchModeException();
-
+        else throw new OperationNotSupportedException(mode);
     }
 
     public void add(T item) {
@@ -72,11 +74,11 @@ public class SortedBinaryTree<T extends Comparable<T>> {
         ++size;
     }
 
-    public void showElements() {
+    public void showElements() throws OperationNotSupportedException {
         showElementsInSubTree(root, "inorder");
     }
 
-    public void showElements(String mode) {
+    public void showElements(String mode) throws OperationNotSupportedException {
         showElementsInSubTree(root, mode);
     }
 

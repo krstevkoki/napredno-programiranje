@@ -1,7 +1,9 @@
 package mk.ukim.finki.aud7;
 
+import javax.naming.OperationNotSupportedException;
+
 public class SortedBinaryTreeTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws OperationNotSupportedException {
         SortedBinaryTree<Integer> sortedBinaryTreeInt = new SortedBinaryTree<>();
         sortedBinaryTreeInt.add(5);
         sortedBinaryTreeInt.add(3);

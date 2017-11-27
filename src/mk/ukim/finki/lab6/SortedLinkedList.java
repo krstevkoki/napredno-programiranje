@@ -35,17 +35,15 @@ class SortedLinkedList<T extends Comparable<T>> {
             return;
         else if (isEmpty())
             addFirst(element);
+        else if (first.element.compareTo(element) > 0)
+            addFirst(element);
+        else if (last.element.compareTo(element) < 0)
+            addLast(element);
         else {
-            if (first.element.compareTo(element) > 0)
-                addFirst(element);
-            else if (last.element.compareTo(element) < 0)
-                addLast(element);
-            else {
-                Node<T> tempFirst = first;
-                while (tempFirst.element.compareTo(element) < 0)
-                    tempFirst = tempFirst.next;
-                addBefore(element, tempFirst);
-            }
+            Node<T> tempFirst = first;
+            while (tempFirst.element.compareTo(element) < 0)
+                tempFirst = tempFirst.next;
+            addBefore(element, tempFirst);
         }
         ++size;
     }
@@ -103,7 +101,7 @@ class SortedLinkedList<T extends Comparable<T>> {
     }
 
     private void removeLast() {
-        if (first.next == null)
+        if (last.equals(first))
             removeFirst();
         else {
             last = last.previous;

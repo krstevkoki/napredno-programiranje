@@ -60,6 +60,6 @@ public class TriviaGame {
                 break;
             questionNumber = new Random().nextInt(totalQuestions);  // Random question we're asking
         }
-        System.out.println("Game over! Thanks for playing!");
+        System.out.println("Team over! Thanks for playing!");
     }
 }

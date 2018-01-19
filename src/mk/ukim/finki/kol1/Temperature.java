@@ -1,13 +1,13 @@
 package mk.ukim.finki.kol1;
 
-import java.util.ArrayList;
+import java.util.List;
 
 class Temperature implements Comparable<Temperature> {
     private int day;
     private char scale;
-    private ArrayList<Double> temperatures;
+    private List<Double> temperatures;
 
-    public Temperature(int day, char scale, ArrayList<Double> temperatures) {
+    public Temperature(int day, char scale, List<Double> temperatures) {
         this.day = day;
         this.scale = scale;
         this.temperatures = temperatures;
@@ -21,8 +21,12 @@ class Temperature implements Comparable<Temperature> {
         return scale;
     }
 
-    public ArrayList<Double> getTemperatures() {
+    public List<Double> getTemperatures() {
         return temperatures;
+    }
+
+    public void setTemperatures(List<Double> temperatures) {
+        this.temperatures = temperatures;
     }
 
     public void setScale(char scale) {
